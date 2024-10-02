@@ -1,0 +1,25 @@
+{
+  "public/logout_icon.png": {
+    "file": "assets/logout_icon-IpQQxWuo.png",
+
+    "src": "public/logout_icon.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-B1gAiJBH.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BoslglZo.css"
+    ],
+    "assets": [
+      "assets/logout_icon-IpQQxWuo.png"
+    ]
+  }
+}
