@@ -26,10 +26,6 @@ git clone https://github.com/tu-usuario/tu-proyecto.git
 cd tu-proyecto
 ```
 
-Aquí tienes el archivo README.md actualizado con los requisitos mínimos de PHP, Laravel, Composer, y Node.js:
-
-markdown
-Copiar código
 # API Documentation
 
 Este documento detalla las rutas disponibles de la API de notas, los métodos HTTP correspondientes y ejemplos de cómo probar cada endpoint utilizando **Postman**.
