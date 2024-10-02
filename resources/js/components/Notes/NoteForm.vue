@@ -28,7 +28,7 @@
       <input id="due_date" v-model="formData.due_date" type="date" class="input-field" />
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="image">Image</label>
       <input
         type="file"
@@ -40,7 +40,7 @@
       <div v-if="imagePreview" class="image-preview">
         <img :src="imagePreview" alt="Preview" class="preview-image" />
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label>Tags</label>
@@ -75,17 +75,17 @@ const props = defineProps({
 
 const emit = defineEmits(["submit", "cancel"]);
 const store = useStore();
-
+// image: null,
 const formData = ref({
   title: props.note?.title || "",
   description: props.note?.description || "",
   due_date: props.note?.due_date || "",
-  image: null,
+
   tags: props.note?.tags?.map((tag) => tag.id) || [],
 });
 
 const availableTags = ref([]);
-const imagePreview = ref(null);
+// const imagePreview = ref(null);
 const showTagForm = ref(false);
 
 onMounted(async () => {
@@ -101,20 +101,20 @@ onMounted(async () => {
   }
 });
 
-const handleImageChange = (event) => {
-  const file = event.target.files[0] || null;
-  formData.value.image = file;
+// const handleImageChange = (event) => {
+//   const file = event.target.files[0] || null;
+//   formData.value.image = file;
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imagePreview.value = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    imagePreview.value = null;
-  }
-};
+//   if (file) {
+//     const reader = new FileReader();
+//     reader.onload = (e) => {
+//       imagePreview.value = e.target.result;
+//     };
+//     reader.readAsDataURL(file);
+//   } else {
+//     imagePreview.value = null;
+//   }
+// };
 
 const handleSubmit = () => {
   const submitData = new FormData();
@@ -126,9 +126,9 @@ const handleSubmit = () => {
     submitData.append("due_date", formData.value.due_date);
   }
 
-  if (formData.value.image instanceof File) {
-    submitData.append("image", formData.value.image);
-  }
+  // if (formData.value.image instanceof File) {
+  //   submitData.append("image", formData.value.image);
+  // }
 
   if (Array.isArray(formData.value.tags) && formData.value.tags.length > 0) {
     formData.value.tags.forEach((tagId) => {

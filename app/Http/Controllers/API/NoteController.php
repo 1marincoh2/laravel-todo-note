@@ -38,10 +38,10 @@ class NoteController extends Controller
         // Asignar el ID del usuario autenticado
         $validatedData['user_id'] = $request->user()->id;
 
-        // Verificar si hay una imagen y guardarla en 'public/notes'
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('notes', 'public');
-        }
+        // // Verificar si hay una imagen y guardarla en 'public/notes'
+        // if ($request->hasFile('image')) {
+        //     $validatedData['image'] = $request->file('image')->store('notes', 'public');
+        // }
 
         // Crear la nota
         $note = $this->noteService->create($validatedData);
@@ -52,7 +52,7 @@ class NoteController extends Controller
         }
 
         // Generar URL de la imagen
-        $note->image = $note->image ? Storage::url($note->image) : null;
+        // $note->image = $note->image ? Storage::url($note->image) : null;
 
         // Devolver la nota creada con la URL de la imagen
         return response()->json($note, 201);
@@ -73,20 +73,20 @@ class NoteController extends Controller
         'title' => 'sometimes|required|string|max:255',
         'description' => 'sometimes|required|string',
         'due_date' => 'nullable|date',
-        'image' => 'nullable|image|max:2048',
+        // 'image' => 'nullable|image|max:2048',
         'tags' => 'nullable|array',
         'tags.*' => 'exists:tags,id',
     ]);
 
-    // Manejo de la imagen
-    if ($request->hasFile('image')) {
-        // Eliminar la imagen anterior
-        if ($note->image) {
-            Storage::disk('public')->delete($note->image);
-        }
-        // Almacenar la nueva imagen
-        $validatedData['image'] = $request->file('image')->store('notes', 'public');
-    }
+    // // Manejo de la imagen
+    // if ($request->hasFile('image')) {
+    //     // Eliminar la imagen anterior
+    //     if ($note->image) {
+    //         Storage::disk('public')->delete($note->image);
+    //     }
+    //     // Almacenar la nueva imagen
+    //     $validatedData['image'] = $request->file('image')->store('notes', 'public');
+    // }
 
     // Actualizar la nota
     $note = $this->noteService->update($note, $validatedData);
@@ -96,8 +96,8 @@ class NoteController extends Controller
         $note->tags()->sync($validatedData['tags']);
     }
 
-    // Generar URL de la imagen
-    $note->image = $note->image ? Storage::url($note->image) : null;
+    // // Generar URL de la imagen
+    // $note->image = $note->image ? Storage::url($note->image) : null;
 
     return response()->json($note, 200);
 }
